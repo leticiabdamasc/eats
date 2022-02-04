@@ -1,5 +1,7 @@
 import 'package:eats/models/products.dart';
+import 'package:eats/pages/details/detals_prod_page.dart';
 import 'package:eats/pages/products/products_repository.dart';
+import 'package:eats/utils/nav.dart';
 import 'package:flutter/material.dart';
 
 class ProductsPage extends StatefulWidget {
@@ -36,44 +38,50 @@ class _ProductsPageState extends State<ProductsPage> {
               itemCount: products.length,
               itemBuilder: (context, index) {
                 var parse = int.parse(products[index].star!);
-                return Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.height / 8,
-                        width: MediaQuery.of(context).size.height / 5,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(products[index].image!))),
-                      ),
-                      Text(products[index].name!),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            height: 20,
-                            width: MediaQuery.of(context).size.width / 5,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: parse,
-                                  itemBuilder: (context, index) {
-                                    return Icon(
-                                      Icons.star,
-                                      color: Colors.amber[700],
-                                      size: 12,
-                                    );
-                                  }),
+                return GestureDetector(
+                  onTap: () {
+                    push(context,
+                        DetailsProdPage(idProduct: products[index].id!));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: MediaQuery.of(context).size.height / 8,
+                          width: MediaQuery.of(context).size.height / 5,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(products[index].image!))),
+                        ),
+                        Text(products[index].name!),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              height: 20,
+                              width: MediaQuery.of(context).size.width / 5,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8),
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: parse,
+                                    itemBuilder: (context, index) {
+                                      return Icon(
+                                        Icons.star,
+                                        color: Colors.amber[700],
+                                        size: 12,
+                                      );
+                                    }),
+                              ),
                             ),
-                          ),
-                          Text("R\$ ${products[index].value!}")
-                        ],
-                      ),
-                    ],
+                            Text("R\$ ${products[index].value!}")
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },

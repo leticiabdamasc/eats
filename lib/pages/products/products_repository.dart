@@ -38,4 +38,15 @@ class ProductsRepository {
       return [];
     }
   }
+
+  Future<String> getImageById(int id) async {
+    final url = "$acess/products/image/$id";
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {'Content-type': 'application/json'},
+    );
+    Map map = jsonDecode(response.body);
+
+    return map['products']['image'];
+  }
 }

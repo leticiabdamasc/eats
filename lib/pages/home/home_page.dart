@@ -1,5 +1,8 @@
+import 'package:eats/pages/cart/cart_page.dart';
 import 'package:eats/pages/categories/category_page.dart';
 import 'package:eats/pages/products/products_page.dart';
+import 'package:eats/pages/profile/profile_page.dart';
+import 'package:eats/pages/requests/request_page.dart';
 import 'package:eats/utils/tab_items.dart';
 import 'package:flutter/material.dart';
 
@@ -128,28 +131,6 @@ class _HomePageState extends State<HomePage> {
                 });
               },
             ),
-            TabItems(
-              text: '',
-              icon: Icons.checklist_rtl,
-              isSelected: selectedPosition == 3,
-              onTap: () {
-                setState(() {
-                  selectedPosition = 3;
-                  _myPage.jumpToPage(3);
-                });
-              },
-            ),
-            TabItems(
-              text: '',
-              icon: Icons.contact_support_outlined,
-              isSelected: selectedPosition == 4,
-              onTap: () {
-                setState(() {
-                  selectedPosition = 4;
-                  _myPage.jumpToPage(4);
-                });
-              },
-            ),
           ],
         ),
       ),
@@ -164,19 +145,11 @@ class _HomePageState extends State<HomePage> {
         print("Page changes to index $int");
       },
       children: [
-        Container(
-          color: Colors.red,
-        ),
-        Container(
-          color: Colors.blue,
+        ProfileCompany(idCompany: widget.idCompany),
+        CartPage(
+          idCompany: widget.idCompany,
         ),
         body(),
-        Container(
-          color: Colors.pink,
-        ),
-        Container(
-          color: Colors.amber,
-        ),
       ],
     );
   }

@@ -45,4 +45,9 @@ class Company {
     data['image'] = image;
     return data;
   }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
 }
