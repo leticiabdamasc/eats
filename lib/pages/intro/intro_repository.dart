@@ -9,6 +9,7 @@ class IntroRepository {
     final response = await http
         .get(Uri.parse(url), headers: {'Content-type': 'application/json'});
     Map map = jsonDecode(response.body);
+    print(map);
     List<Company> company = [];
     if (map.containsKey('companies')) {
       map['companies'].forEach((c) async {

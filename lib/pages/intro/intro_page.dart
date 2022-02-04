@@ -57,8 +57,8 @@ class _IntroPageState extends State<IntroPage> {
             builder: (context, AsyncSnapshot<dynamic> snapshot) {
               if (!snapshot.hasData) {
                 return const SizedBox(
-                  height: 50,
-                  width: 50,
+                  height: 10,
+                  width: 10,
                   child: CircularProgressIndicator(
                     color: Colors.white,
                   ),
